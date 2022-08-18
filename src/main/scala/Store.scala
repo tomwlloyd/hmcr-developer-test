@@ -1,8 +1,10 @@
 class Store {
   def cost(basket: List[String]): Int = {
-    basket.map {
-      case "Apple" => 60
-      case "Orange" => 25
-    }.sum
+    basket.map(cost).sum
+  }
+
+  def cost(item: String): Int = item match {
+    case "Apple" => 60
+    case "Orange" => 25
   }
 }

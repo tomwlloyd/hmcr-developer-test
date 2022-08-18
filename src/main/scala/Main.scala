@@ -1,5 +1,10 @@
-@main def hello: Unit = 
-  println("Hello world!")
-  println(msg)
+@main def goShopping: Unit =
+  val store = new Store
 
-def msg = "I was compiled by Scala 3. :)"
+  val basket = List("Apple", "Orange", "Apple", "Apple", "Apple")
+
+  val appleCount = basket.count(_ == "Apple")
+  val orangeCount = basket.count(_ == "Orange")
+  val cost = store.cost(basket)
+
+  println(s"I went to the shop today and bought $appleCount Apple(s) and $orangeCount Orange(s). It cost me ${cost}p!")

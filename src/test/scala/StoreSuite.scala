@@ -1,33 +1,21 @@
 class StoreSuite extends munit.FunSuite {
   test("returns 0 for empty basket") {
-    val store = new Store
-
-    val basketTotal = store.cost(List())
-
-    assertEquals(basketTotal, 0)
+    assertBasketTotal(List(), 0)
   }
 
-  test("returns correct cost for an Apple") {
-    val store = new Store
-
-    val basketTotal = store.cost(List("Apple"))
-
-    assertEquals(basketTotal, 60)
+  test("returns 60 for single Apple") {
+    assertBasketTotal(List("Apple"), 60)
   }
 
-  test("returns correct cost for an Orange") {
-    val store = new Store
-
-    val basketTotal = store.cost(List("Orange"))
-
-    assertEquals(basketTotal, 25)
+  test("returns 25 for single Orange") {
+    assertBasketTotal(List("Orange"), 25)
   }
 
-  test("returns correct cost for 3 Apples and 5 Oranges") {
-    val store = new Store
+  test("returns 305 for 3 Apples and 5 Oranges") {
+    assertBasketTotal(List("Apple", "Apple", "Apple", "Orange", "Orange", "Orange", "Orange", "Orange"), 305)
+  }
 
-    val basketTotal = store.cost(List("Apple", "Apple", "Apple", "Orange", "Orange", "Orange", "Orange", "Orange"))
-
-    assertEquals(basketTotal, 305)
+  def assertBasketTotal(basket: List[String], expectedTotal: Int): Unit = {
+    assertEquals((new Store).cost(basket), expectedTotal)
   }
 }

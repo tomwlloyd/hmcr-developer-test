@@ -1,10 +1,21 @@
 @main def goShopping: Unit =
-  val store = new Store
+  val prices = Map(
+    "Apple" -> 60,
+    "Orange" -> 25,
+    "Milk" -> 105,
+    "Bread" -> 80
+  )
 
-  val basket = List("Apple", "Orange", "Apple", "Apple", "Apple")
+  val store = new Store(prices)
 
-  val appleCount = basket.count(_ == "Apple")
-  val orangeCount = basket.count(_ == "Orange")
-  val cost = store.cost(basket)
+  val basket = List("Apple", "Orange", "Apple", "Apple", "Apple", "Milk", "Bread", "Milk")
 
-  println(s"I went to the shop today and bought $appleCount Apple(s) and $orangeCount Orange(s). It cost me ${cost}p!")
+  val receiptLines = basket.toSet.map(product => s"$product (${basket.count(_ == product)})")
+
+  println(receiptLines.mkString("\n") + s"\nTotal cost: ${store.cost(basket)}p")
+
+//  val appleCount = basket.count(_ == "Apple")
+//  val orangeCount = basket.count(_ == "Orange")
+//  val cost = store.cost(basket)
+//
+//  println(s"I went to the shop today and bought $appleCount Apple(s) and $orangeCount Orange(s). It cost me ${cost}p!")

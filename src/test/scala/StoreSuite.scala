@@ -24,6 +24,13 @@ class StoreSuite extends munit.FunSuite {
   }
 
   def assertBasketTotal(basket: List[String], expectedTotal: Int): Unit = {
-    assertEquals((new Store).cost(basket), expectedTotal)
+    val prices = Map(
+      "Apple" -> 60,
+      "Orange" -> 25
+    )
+    
+    val store = new Store(prices)
+
+    assertEquals(store.cost(basket), expectedTotal)
   }
 }
